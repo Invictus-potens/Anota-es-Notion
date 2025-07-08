@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notion Notes App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Notion Notes App</h1>
+    <div id="auth-section">
+      <form id="register-form">
+        <h2>Registrar</h2>
+        <input type="text" id="register-username" placeholder="Usuário" required>
+        <input type="password" id="register-password" placeholder="Senha" required>
+        <button type="submit">Registrar</button>
+        <div class="msg" id="register-msg"></div>
+      </form>
+      <form id="login-form">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Usuário" required>
+        <input type="password" id="login-password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+        <div class="msg" id="login-msg"></div>
+      </form>
+    </div>
+    <div id="notes-section" style="display:none;">
+      <button id="logout-btn">Sair</button>
+      <h2>Minhas Notas</h2>
+      <form id="note-form">
+        <input type="text" id="note-title" placeholder="Título" required>
+        <textarea id="note-content" placeholder="Conteúdo"></textarea>
+        <button type="submit">Criar Nota</button>
+      </form>
+      <ul id="notes-list"></ul>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 

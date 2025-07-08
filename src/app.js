@@ -8,11 +8,12 @@ import { fileURLToPath } from 'url';
 
 dotenv.config();
 
+const app = express();
+app.use(express.json());
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, '../public')));
 
-const app = express();
-app.use(express.json());
 
 app.use('/notes', notesRoutes);
 app.use('/auth', authRoutes);

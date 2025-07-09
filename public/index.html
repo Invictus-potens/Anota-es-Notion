@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notion Notes App</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
@@ -32,15 +33,15 @@
         <ul id="sidebar-notes-list" style="list-style:none; padding:0; margin:0;"></ul>
       </div>
       <div style="flex:1; min-width:0;">
-        <button id="logout-btn">Sair</button>
-        <h2>Minhas Notas</h2>
-        <form id="note-form" enctype="multipart/form-data">
-          <input type="text" id="note-title" placeholder="Título" required>
-          <textarea id="note-content" placeholder="Conteúdo"></textarea>
-          <label for="note-attachment" style="display:none;">Anexar arquivos</label>
-          <input type="file" id="note-attachment" multiple title="Anexar arquivos">
-          <button type="submit">Criar Nota</button>
-        </form>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2>Minhas Notas</h2>
+          <div style="display: flex; gap: 10px;">
+            <button id="create-note-btn" style="background: linear-gradient(90deg, #3772ff 0%, #9757d7 100%); color: #fff; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+              <i class="fas fa-plus"></i> Nova Nota
+            </button>
+            <button id="logout-btn">Sair</button>
+          </div>
+        </div>
         <div id="attachments-list"></div>
         <ul id="notes-list"></ul>
       </div>

@@ -21,6 +21,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+app.get('/create-note', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/create-note.html'));
+});
+
 const PORT = process.env.PORT || 3000;
 
 // Initialize database before starting server

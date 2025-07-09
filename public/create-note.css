@@ -1,0 +1,217 @@
+/* Estilos específicos para a página de criação de notas */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.back-btn {
+  background: #353945;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+  width: auto;
+  margin-bottom: 0;
+}
+
+.back-btn:hover {
+  background: #23262f;
+}
+
+.header h1 {
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.attachment-section {
+  margin-bottom: 20px;
+}
+
+.attachment-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #353945;
+  color: #e0e0e0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: background 0.2s;
+  border: 1px solid #353945;
+  margin-bottom: 10px;
+}
+
+.attachment-label:hover {
+  background: #23262f;
+}
+
+.attachment-label i {
+  font-size: 1.1em;
+  color: #3772ff;
+}
+
+#note-attachment {
+  display: none;
+}
+
+.selected-files {
+  margin-top: 10px;
+  padding: 10px;
+  background: #181a20;
+  border-radius: 6px;
+  border: 1px solid #353945;
+  min-height: 20px;
+}
+
+.selected-files .file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #353945;
+}
+
+.selected-files .file-item:last-child {
+  border-bottom: none;
+}
+
+.selected-files .file-item .file-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e0e0e0;
+  font-size: 0.9em;
+}
+
+.selected-files .file-item .file-name i {
+  color: #3772ff;
+}
+
+.selected-files .file-item .remove-file {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: background 0.2s;
+}
+
+.selected-files .file-item .remove-file:hover {
+  background: #c0392b;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.create-btn, .export-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.create-btn {
+  background: linear-gradient(90deg, #3772ff 0%, #9757d7 100%);
+  color: #fff;
+}
+
+.create-btn:hover {
+  background: linear-gradient(90deg, #2b50aa 0%, #7a3bb7 100%);
+  box-shadow: 0 4px 16px #3772ff33;
+}
+
+.export-btn {
+  background: #353945;
+  color: #e0e0e0;
+}
+
+.export-btn:hover {
+  background: #23262f;
+}
+
+.attachments-list {
+  margin-top: 20px;
+  padding: 15px;
+  background: #181a20;
+  border-radius: 8px;
+  border: 1px solid #353945;
+}
+
+.attachments-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.attachments-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #353945;
+}
+
+.attachments-list li:last-child {
+  border-bottom: none;
+}
+
+.attachments-list a {
+  color: #3772ff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.attachments-list a:hover {
+  text-decoration: underline;
+}
+
+.attachments-list i {
+  color: #3772ff;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .back-btn {
+    align-self: flex-start;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .create-btn, .export-btn {
+    width: 100%;
+  }
+} 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Nota - Notion Notes App</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="create-note.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button id="back-btn" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Voltar
+      </button>
+      <h1>Criar Nova Nota</h1>
+    </div>
+    
+    <form id="note-form" enctype="multipart/form-data">
+      <input type="text" id="note-title" placeholder="Título da nota" required>
+      <textarea id="note-content" placeholder="Conteúdo da nota" rows="8"></textarea>
+      
+      <div class="attachment-section">
+        <label for="note-attachment" class="attachment-label">
+          <i class="fas fa-paperclip"></i>
+          Anexar arquivos
+        </label>
+        <input type="file" id="note-attachment" multiple title="Anexar arquivos">
+        <div id="selected-files" class="selected-files"></div>
+      </div>
+      
+      <div class="button-group">
+        <button type="submit" class="create-btn">
+          <i class="fas fa-plus"></i> Criar Nota
+        </button>
+        <button type="button" id="export-pdf-btn" class="export-btn">
+          <i class="fas fa-file-pdf"></i> Exportar para PDF
+        </button>
+      </div>
+    </form>
+    
+    <div id="attachments-list" class="attachments-list"></div>
+    
+    <div class="msg" id="form-msg"></div>
+  </div>
+  
+  <script src="create-note.js"></script>
+</body>
+</html> 

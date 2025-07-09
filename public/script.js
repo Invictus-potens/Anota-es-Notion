@@ -5,15 +5,13 @@ const authSection = document.getElementById('auth-section');
 const notesSection = document.getElementById('notes-section');
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form');
-const noteForm = document.getElementById('note-form');
 const notesList = document.getElementById('notes-list');
 const logoutBtn = document.getElementById('logout-btn');
 const registerMsg = document.getElementById('register-msg');
 const loginMsg = document.getElementById('login-msg');
 const sidebarNotesList = document.getElementById('sidebar-notes-list');
 const attachmentsList = document.getElementById('attachments-list');
-const noteAttachmentInput = document.getElementById('note-attachment');
-import jsPDF from 'jspdf';
+const createNoteBtn = document.getElementById('create-note-btn');
 
 let allNotes = [];
 let selectedNoteId = null;
@@ -92,39 +90,8 @@ logoutBtn.onclick = () => {
   showAuth();
 };
 
-noteForm.onsubmit = async (e) => {
-  e.preventDefault();
-  const title = document.getElementById('note-title').value;
-  const content = document.getElementById('note-content').value;
-  try {
-    // Cria a nota
-    const res = await fetch(API + '/notes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      },
-      body: JSON.stringify({ title, content })
-    });
-    if (res.ok) {
-      const note = await res.json();
-      // Se houver arquivos, faz upload
-      if (noteAttachmentInput.files.length > 0) {
-        for (let i = 0; i < noteAttachmentInput.files.length; i++) {
-          const file = noteAttachmentInput.files[i];
-          const formData = new FormData();
-          formData.append('file', file);
-          await fetch(API + `/notes/${note.id}/attachments`, {
-            method: 'POST',
-            headers: { 'Authorization': 'Bearer ' + token },
-            body: formData
-          });
-        }
-      }
-      noteForm.reset();
-      fetchNotes();
-    }
-  } catch (err) {}
+createNoteBtn.onclick = () => {
+  window.location.href = '/create-note';
 };
 
 async function fetchNotes() {
@@ -250,15 +217,31 @@ exportPdfBtn.onclick = () => {
     alert('Selecione pelo menos uma nota para exportar.');
     return;
   }
-  const doc = new jsPDF();
-  notesToExport.forEach((note, idx) => {
-    if (idx > 0) doc.addPage();
-    doc.setFontSize(16);
-    doc.text(note.title, 10, 20);
-    doc.setFontSize(11);
-    doc.text('Criada em: ' + formatDate(note.created_at), 10, 30);
-    doc.setFontSize(12);
-    doc.text(note.content || '', 10, 40, { maxWidth: 180 });
-  });
-  doc.save('notas.pdf');
+  
+  // Importar jsPDF dinamicamente
+  import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')
+    .then(() => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      notesToExport.forEach((note, idx) => {
+        if (idx > 0) doc.addPage();
+        doc.setFontSize(16);
+        doc.setFont(undefined, 'bold');
+        doc.text(note.title, 10, 20);
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'normal');
+        doc.text('Criada em: ' + formatDate(note.created_at), 10, 30);
+        doc.setFontSize(12);
+        if (note.content) {
+          const splitText = doc.splitTextToSize(note.content, 180);
+          doc.text(splitText, 10, 40);
+        }
+      });
+      doc.save('notas.pdf');
+    })
+    .catch(err => {
+      console.error('Erro ao carregar jsPDF:', err);
+      alert('Erro ao gerar PDF. Tente novamente.');
+    });
 }; 

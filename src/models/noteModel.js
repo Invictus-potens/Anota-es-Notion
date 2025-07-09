@@ -1,12 +1,12 @@
 import { openDb } from '../db.js';
 
-export async function createNoteDB({ user_id, title, content, notion_page_id }) {
+export async function createNoteDB({ user_id, title, content }) {
   const db = await openDb();
   const result = await db.run(
-    'INSERT INTO notes (user_id, title, content, notion_page_id) VALUES (?, ?, ?, ?)',
-    user_id, title, content, notion_page_id
+    'INSERT INTO notes (user_id, title, content) VALUES (?, ?, ?)',
+    user_id, title, content
   );
-  return { id: result.lastID, user_id, title, content, notion_page_id };
+  return { id: result.lastID, user_id, title, content };
 }
 
 export async function getNotesDB(user_id) {

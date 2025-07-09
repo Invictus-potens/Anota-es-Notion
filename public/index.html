@@ -25,15 +25,25 @@
         <div class="msg" id="login-msg"></div>
       </form>
     </div>
-    <div id="notes-section" style="display:none;">
-      <button id="logout-btn">Sair</button>
-      <h2>Minhas Notas</h2>
-      <form id="note-form">
-        <input type="text" id="note-title" placeholder="Título" required>
-        <textarea id="note-content" placeholder="Conteúdo"></textarea>
-        <button type="submit">Criar Nota</button>
-      </form>
-      <ul id="notes-list"></ul>
+    <div id="notes-section" style="display:none; display: flex; flex-direction: row; gap: 24px;">
+      <div id="sidebar-notes" style="width: 180px; min-width: 140px; background: #20222b; border-radius: 10px; padding: 16px 8px; box-shadow: 0 2px 8px #0002; height: 100%; overflow-y: auto;">
+        <h3 style="text-align:center; margin-top:0;">Notas</h3>
+        <button id="export-pdf-btn" style="width:100%;margin-bottom:10px;">Exportar para PDF</button>
+        <ul id="sidebar-notes-list" style="list-style:none; padding:0; margin:0;"></ul>
+      </div>
+      <div style="flex:1; min-width:0;">
+        <button id="logout-btn">Sair</button>
+        <h2>Minhas Notas</h2>
+        <form id="note-form" enctype="multipart/form-data">
+          <input type="text" id="note-title" placeholder="Título" required>
+          <textarea id="note-content" placeholder="Conteúdo"></textarea>
+          <label for="note-attachment" style="display:none;">Anexar arquivos</label>
+          <input type="file" id="note-attachment" multiple title="Anexar arquivos">
+          <button type="submit">Criar Nota</button>
+        </form>
+        <div id="attachments-list"></div>
+        <ul id="notes-list"></ul>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
